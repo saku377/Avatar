@@ -40,7 +40,12 @@
         <li class="nav-item">
           <a class="nav-link " aria-current="page" href="albunes.html">Albunes</a>
         </li>
+        <li class="nav-item">
+          <a class="nav-link " aria-current="page" href="calculadora.html">Calculadora</a>
+        </li>
+
       </ul>
+
 
     </div>
   </div>
@@ -52,14 +57,76 @@
         de clasicos como TMNT: Turtles in time y Cadilacs y Dinosaurios.
     </p>
     <p>Otro parrafo para rellenar</p>
-    <p class="colorUnico cambioback">Otro parrafo para rellenar</p>
+    <p class="colorUnico cambioback"></p>
     <p>Otro parrafo para rellenar</p>
     <p  class="colorUnico">Otro parrafo para rellenar</p>
     </div>
+
+    <table class="table table-dark table-striped">
+  <thead>
+    ...
+  </thead>
+  <tbody>
+    <tr class="table-active">
+      <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Parametros</th>
+      <th scope="col">Valor</th>
+    </tr>
+  </thead>
+    <tbody>
+    <tr>
+      <th scope="row">1</th>
+      <td>Compra</td>
+      <td>$<span id="valorDolar"></span></td>
+    </tr>
+    <tr>
+      <th scope="row">2</th>
+      <td>Venta</td>
+      <td>$<span id="valorVenta"></span></td>
+    </tr>
+    <tr>
+      <th scope="row">3</th>
+      <td>Nombre</td>
+      <td><span id="valorMoneda"></span></td>
+    </tr>
+    <tr>
+      <th scope="row">4</th>
+      <td>Divisa</td>
+      <td><span id="valorNombre"></span></td>
+    </tr>
+    <tr>
+      <th scope="row">5</th>
+      <td>fecha</td>
+      <td><span id="fecha"></span></td>
+    </tr>
+    <tr>
+      <th scope="row">6</th>
+      <td>Dolar Obs</td>
+      <td>$<span id="dolar"></span></td>
+    </tr>
+
+
+  </tbody>
+</table>
     
 <script>
-    console.log("Hola Vicky")
+  fetch('https://cl.dolarapi.com/v1/cotizaciones/usd')
+  .then(responde=>responde.json())
+  .then(datos=>{
+    document.getElementById("valorDolar").innerHTML = datos.compra;
+    document.getElementById("valorVenta").innerHTML = datos.venta;
+    document.getElementById("valorMoneda").innerHTML = datos.moneda;
+    document.getElementById("valorNombre").innerHTML = datos.nombre;
+    document.getElementById("fecha").innerHTML = datos.fechaActualizacion.substring(0, 10);
+    document.getElementById("dolar").innerHTML = datos.ultimoCierre;
+    console.log(datos)
+  })
 </script>
+
+
+
 
 </body>
 </html>
